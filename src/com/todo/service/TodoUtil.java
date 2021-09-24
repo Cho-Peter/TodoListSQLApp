@@ -132,14 +132,12 @@ public class TodoUtil {
 				l.addItem(t);
 				i++;
 			}
-			if (i>0) {
-				System.out.println("1개의 항목을 읽었습니다.");
-			}else {
-				System.out.println("todolist.txt 파일이 없습니다. ");
-			}
 			br.close();
+			System.out.println(i + "개의 항목을 읽었습니다.");
+			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("todolist.txt 파일이 없습니다.");
+			//e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
