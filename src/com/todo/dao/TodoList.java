@@ -1,7 +1,7 @@
 package com.todo.dao;
 
 import java.util.*;
-
+import java.util.ArrayList;
 import com.todo.service.TodoSortByDate;
 import com.todo.service.TodoSortByName;
 
@@ -39,7 +39,7 @@ public class TodoList {
 		System.out.println("\n"
 				+ "inside list_All method\n");
 		for (TodoItem myitem : list) {
-			System.out.println(myitem.toString());
+			System.out.println((list.indexOf(myitem)+1) + ". " + myitem.toString());
 		}
 	}
 	
@@ -61,4 +61,5 @@ public class TodoList {
 		}
 		return false;
 	}
+
 }
