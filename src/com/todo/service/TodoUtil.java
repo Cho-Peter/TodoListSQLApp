@@ -65,10 +65,8 @@ public class TodoUtil {
 			if (num == (l.indexOf(item)+1)) {
 				System.out.println((l.indexOf(item)+1) + ". " + item.toString());
 				System.out.print("위 항목을 삭제하시겠습니까? (y/n) : ");
-				char q = sc.next().charAt(0);
-				
-				sc.nextLine();
-				if(q == 'y') {
+				String q = sc.next();
+				if(q.equals("y")) {
 					l.deleteItem(item);
 					System.out.println("삭제되었습니다.");
 					break;
@@ -125,14 +123,13 @@ public class TodoUtil {
 	public static void findItem(TodoList l, String key_word) {
 		int count = 0;
 		for(TodoItem item : l.getList()) {
-			if(item.getCategory().contains(key_word)){
+			if(item.getTitle().contains(key_word)){
 				System.out.println((l.indexOf(item)+1)+". " + item.toString());
 				count++;
 			}else if(item.getDesc().contains(key_word)) {
 				System.out.println((l.indexOf(item)+1)+". " + item.toString());
 				count++;
 			}
-			
 		}
 		System.out.println("총 " + count + "개의 항목을 찾았습니다.");
 	}
@@ -157,8 +154,9 @@ public class TodoUtil {
 		int i = 0;
 		while(iter.hasNext()) {
 			i++;
-			if(i == set.size()) System.out.println(iter.next());
-			else System.out.print(iter.next() + " / ");
+			String s = (String)iter.next();
+			if(i == set.size()) System.out.println(s);
+			else System.out.print(s + " / ");
 		}
 		System.out.println("총 " + set.size() + "개의 카테고리가 등록되어 있습니다.");
 		
