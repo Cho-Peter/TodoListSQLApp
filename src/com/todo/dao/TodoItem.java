@@ -4,11 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TodoItem {
+	private int id;
     private String title;
     private String category;
     private String desc;
     private String due_date;
     private String current_date;
+    private int is_comp;
     
 
 
@@ -52,10 +54,36 @@ public class TodoItem {
     public void setCurrent_date(String current_date) {
         this.current_date = current_date;
     }
+    public String getDue_date() {
+        return due_date;
+    }
+
+    public void setDue_date(String due_date) {
+        this.due_date = due_date;
+    }
+    
+    
+    public int getId(){
+    	return id;
+    }
+	public void setId(int id){
+    	this.id = id;
+    }
+    public int getIs_Comp(){
+    	return is_comp;
+    }
+    public void setIs_Comp(int is_comp){
+    	this.is_comp = is_comp;
+    }
+
     
     @Override
     public String toString() {
-    	return  "[" + category + "] "+ title + " - " + desc + " - " + due_date + " - " + current_date;
+    	if(is_comp == 1) {
+    		return  id + ". [" + category + "] "+ title+ "[V]" + " - " + desc + " - " + due_date + " - " + current_date;
+    	}else {
+    		return id + ". [" + category + "] "+ title + " - " + desc + " - " + due_date + " - " + current_date;
+    	}
     }
     
     public String toSaveString() {

@@ -12,14 +12,14 @@ public class TodoMain {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
-		boolean isList = false;
+		//l.importData("todolist.txt");
+		
 		boolean quit = false;
 		
-		TodoUtil.loadList(l, "todolist.txt");
+
 		Menu.displaymenu();
 		do {
 			Menu.prompt();
-			isList = false;
 			String choice = sc.next();
 			switch (choice) {
 
@@ -40,43 +40,46 @@ public class TodoMain {
 				break;
 
 			case "ls_name_asc":
-				l.sortByName();
+				TodoUtil.listAll(l, "title", 1);
 				System.out.println("제목순으로 정렬했습니다.");
-				isList = true;
 				break;
 
 			case "ls_name_desc":
-				l.sortByName();
-				l.reverseList();
+				TodoUtil.listAll(l, "title", 0);
 				System.out.println("제목역순으로 정렬했습니다.");
-				isList = true;
 				break;
 				
 			case "ls_date":
-				l.sortByDate();
+				TodoUtil.listAll(l, "due_date", 1);
 				System.out.println("날짜순으로 정렬했습니다.");
-				isList = true;
 				break;
 				
 			case "ls_date_desc":
-				l.sortByDate();
-				l.reverseList();
+				TodoUtil.listAll(l, "due_date", 0);
 				System.out.println("날짜역순으로 정렬했습니다.");
-				isList = true;
 				break;
 				
 			case "find":
 				String key_word = sc.nextLine().trim();
-				TodoUtil.findItem(l,key_word);
+				TodoUtil.findList(l,key_word);
 				break;
 				
 			case "find_cate":
 				String key_cate = sc.nextLine().trim();
-				TodoUtil.findItemCate(l, key_cate);
+				TodoUtil.findListCate(l, key_cate);
 				break;
 				
 			case "ls_cate":
 				TodoUtil.listCate(l);
+				break;
+				
+			case "comp":
+				int key = sc.nextInt();
+				TodoUtil.comp(l, key);
+				break;
+				
+			case "ls_comp":
+				TodoUtil.ls_comp(l);
 				break;
 				
 			case "help":
@@ -85,15 +88,12 @@ public class TodoMain {
 				
 			case "exit":
 				quit = true;
-				TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			default:
 				System.out.println("정확한 명령를 입력하세요. (자세한 도움말 - help)");
 				break;
 			}
-			
-			if(isList) l.listAll();
 		} while (!quit);
 	}
 }
